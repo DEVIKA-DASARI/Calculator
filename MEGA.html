@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      body {
+        color: white; /* White text color */
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1); /* White shadow effect */
+        width: fit-content;
+        margin: 0 auto;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 2px;
+        border-radius: 5px;
+        user-select: none;
+      }
+
+      .digits {
+        background-color: #ffffff;
+        opacity: 0.4; /* Blue color for digit buttons */
+      }
+
+      .operator {
+        background-color: white; /* White color for operator buttons */
+        color: blue; /* Blue text color for operator buttons */
+      }
+
+      .operator:hover {
+        background-color: pink; /* Pink hover effect for operator buttons */
+      }
+
+      #display {
+        width: calc(100% - 40px);
+        margin-bottom: 10px;
+        font-size: 24px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid #fff;
+        background-color: aqua;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    >
+    <div class="container">
+      <form name="CALCULATOR">
+        <input id="display" type="text" name="display" readonly />
+        <br /><br />
+        <input
+          class="button digits"
+          type="button"
+          value="7"
+          onclick="appendToDisplay('7')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="8"
+          onclick="appendToDisplay('8')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="9"
+          onclick="appendToDisplay('9')"
+        />
+        <input
+          class="button operator"
+          type="button"
+          value="+"
+          onclick="appendToDisplay('+')"
+        />
+        <br />
+        <input
+          class="button digits"
+          type="button"
+          value="4"
+          onclick="appendToDisplay('4')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="5"
+          onclick="appendToDisplay('5')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="6"
+          onclick="appendToDisplay('6')"
+        />
+        <input
+          class="button operator"
+          type="button"
+          value="-"
+          onclick="appendToDisplay('-')"
+        />
+        <br />
+        <input
+          class="button digits"
+          type="button"
+          value="1"
+          onclick="appendToDisplay('1')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="2"
+          onclick="appendToDisplay('2')"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="3"
+          onclick="appendToDisplay('3')"
+        />
+        <input
+          class="button operator"
+          type="button"
+          value="*"
+          onclick="appendToDisplay('*')"
+        />
+        <br />
+        <input
+          class="button digits"
+          type="button"
+          value="C"
+          onclick="clearDisplay()"
+        />
+        <input
+          class="button digits"
+          type="button"
+          value="0"
+          onclick="appendToDisplay('0')"
+        />
+        <input
+          class="button operator"
+          type="button"
+          value="="
+          onclick="safeEvaluate()"
+        />
+        <input
+          class="button operator"
+          type="button"
+          value="/"
+          onclick="appendToDisplay('/')"
+        />
+      </form>
+    </div>
+
+    <script>
+      function safeEvaluate() {
+        const display = document.getElementById("display");
+        try {
+          const result = eval(display.value);
+          display.value = Number.isInteger(result) ? result : result.toFixed(2);
+        } catch (error) {
+          display.value = "Error";
+        }
+      }
+
+      function clearDisplay() {
+        const display = document.getElementById("display");
+        display.value = "";
+      }
+
+      function appendToDisplay(value) {
+        const display = document.getElementById("display");
+        display.value += value;
+      }
+    </script>
+  </body>
+</html>
